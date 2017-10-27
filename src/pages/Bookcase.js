@@ -3,18 +3,17 @@ import Shelf from './Shelf'
 
 class Bookcase extends Component {
 
-  
+
   render () {
-    const { shelves, books } = this.props
+    const { books, shelves, updateShelf } = this.props
 
     return (
       <div className='container'>
+
         {shelves.map(s => (
-          <div key={s.shelfID} className='shelf'>
-            <h2>{s.shelfName}</h2>
-            <Shelf books={books.filter(b => b.shelf === s.shelfID)} />
-          </div>
-        ))}
+          <Shelf key={s.key} books={books.filter(b => b.shelf === s.value)} shelves={shelves} shelfTitle={s.text} updateShelf={updateShelf} />
+        )) }
+
       </div>
 
     )
