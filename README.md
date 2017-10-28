@@ -9,9 +9,9 @@ To install and run this project you need to be installed [npm](https://github.co
 
 ## Install instructions
 
-1) clone repository https://github.com/marcosmiklos/my-reads.git
+1) clone repository
 ```
-$ git clone
+$ git clone https://github.com/marcosmiklos/my-reads.git
 ```
 2) enter in directory my-reads
 ```
