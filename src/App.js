@@ -8,8 +8,11 @@ import SearchBooks from './pages/SearchBooks';
 
 class App extends Component {
 
-  state = {
-    books: []
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: []
+    }
   }
 
   componentDidMount() {
