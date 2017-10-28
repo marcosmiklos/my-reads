@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import { Segment, Grid } from 'semantic-ui-react'
 import Shelf from './Shelf'
 
 class Bookcase extends Component {
 
+  static PropTypes = {
+    books: PropTypes.array.isRequired,
+    shelves: PropTypes.array.isRequired,
+    updateShelf: PropTypes.func.isRequired
+  }
 
   render () {
     const { books, shelves, updateShelf } = this.props
@@ -26,7 +32,7 @@ class Bookcase extends Component {
         <div className="open-search">
           <Link to="/search">
             Add a book
-          </Link> 
+          </Link>
         </div>
 
       </div>

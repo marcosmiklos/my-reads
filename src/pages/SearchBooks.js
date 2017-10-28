@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import { Segment, Grid, Input } from 'semantic-ui-react'
 import * as BooksAPI from '../utils/BooksAPI'
 import Shelf from './Shelf'
 
 class SearchBooks extends Component {
+
+  static PropTypes = {
+    books: PropTypes.array.isRequired,
+    shelves: PropTypes.array.isRequired,
+    updateShelf: PropTypes.func.isRequired,
+    resolveImage: PropTypes.func.resolveImage
+  }
 
   state = {
     query: '',
@@ -34,6 +42,13 @@ class SearchBooks extends Component {
               r.imageLinks = { smallThumbnail: this.props.resolveImage(r) };
               return r;
             })
+          }))
+        } else {
+          //console.log('resp',resp);
+          this.setState(state => ({
+            searchResults: [],
+            isLoading: false,
+            query: query
           }))
         }
       })
