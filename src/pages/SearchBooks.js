@@ -70,7 +70,7 @@ class SearchBooks extends Component {
 
   render () {
 
-    const { shelves, updateShelf } = this.props
+    const { shelves, onUpdateShelf } = this.props
     const { searchResults, isLoading } = this.state
 
     return (
@@ -88,7 +88,7 @@ class SearchBooks extends Component {
                 {searchResults.length > 0 &&
                   <Segment raised>
                     <Header as='h2' color='teal'>Results</Header>
-                    <Shelf books={searchResults} shelves={shelves} updateShelf={updateShelf} />
+                    <Shelf books={searchResults} shelves={shelves} onUpdateShelf={onUpdateShelf} />
                   </Segment>
                 }
             </Grid.Column>

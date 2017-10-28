@@ -9,11 +9,11 @@ class Bookcase extends Component {
   static PropTypes = {
     books: PropTypes.array.isRequired,
     shelves: PropTypes.array.isRequired,
-    updateShelf: PropTypes.func.isRequired
+    onUpdateShelf: PropTypes.func.isRequired
   }
 
   render () {
-    const { books, shelves, updateShelf } = this.props
+    const { books, shelves, onUpdateShelf } = this.props
 
     return (
       <div className='container'>
@@ -23,7 +23,7 @@ class Bookcase extends Component {
             <Grid.Column>
               <Segment raised>
                 <Header as='h2' color='teal'>{s.text}</Header>
-                <Shelf books={books.filter(b => b.shelf === s.value)} shelves={shelves} updateShelf={updateShelf} />
+                <Shelf books={books.filter(b => b.shelf === s.value)} shelves={shelves} onUpdateShelf={onUpdateShelf} />
               </Segment>
             </Grid.Column>
           </Grid.Row>

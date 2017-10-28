@@ -2,7 +2,7 @@ import React from 'react'
 import 'semantic-ui-css/semantic.min.css';
 import { Grid, Card, Image, Dropdown } from 'semantic-ui-react'
 
-const Shelf = ({ books=[], shelves=[], shelfTitle = '', updateShelf, checkImage, columns = 5 }) => {
+const Shelf = ({ books=[], shelves=[], shelfTitle = '', onUpdateShelf, checkImage, columns = 5 }) => {
 
   const options = shelves.concat([{key: 'none', text: 'None', value: 'none' }]);
 

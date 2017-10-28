@@ -65,15 +65,15 @@ class App extends Component {
             <Bookcase
               books={books}
               shelves={shelves}
-              updateShelf={this.updateShelf}
+              onUpdateShelf={this.updateShelf}
             />
           )}/>
           <Route path='/search' render={({ history }) => (
             <SearchBooks
               books={books}
               shelves={shelves}
-              updateShelf={this.updateShelf}
-              resolveImage={this.resolveImage}
+              onUpdateShelf={this.updateShelf}
+              onResolveImage={this.resolveImage}
             />
           )}/>
 
