@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import * as BooksAPI from './utils/BooksAPI'
-import Bookcase from './pages/Bookcase';
 import 'semantic-ui-css/semantic.min.css';
 import { Container, Header } from 'semantic-ui-react'
+import Bookcase from './pages/Bookcase';
+import SearchBooks from './pages/SearchBooks';
 
 class App extends Component {
 
@@ -12,7 +14,11 @@ class App extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books })
+      const result = books.map( r => {
+        r.imageLinks = { smallThumbnail: this.resolveImage(r) };
+        return r;
+      });
+      this.setState({ books: result })
     })
   }
 
@@ -25,8 +31,13 @@ class App extends Component {
           books: state.books.filter(bk => bk.id !== book.id).concat([book])
         }));
       });
+
     }
   };
+
+  resolveImage = (book) => {
+    return book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : '/defaultcover.jpg';
+  }
 
   render() {
 
@@ -42,12 +53,21 @@ class App extends Component {
       <div className="App">
         <Container style={{ marginTop: '3em', padding: '5em 0em' }}>
           <Header as='h1' dividing>My Reads</Header>
-
+          <Route exact path='/' render={() => (
             <Bookcase
               books={books}
               shelves={shelves}
               updateShelf={this.updateShelf}
             />
+          )}/>
+          <Route path='/search' render={({ history }) => (
+            <SearchBooks
+              books={books}
+              shelves={shelves}
+              updateShelf={this.updateShelf}
+              resolveImage={this.resolveImage}
+            />
+          )}/>
 
           </Container>
       </div>
