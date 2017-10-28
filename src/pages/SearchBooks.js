@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
+import escapeRegExp from 'escape-string-regexp'
 import { Segment, Grid, Input } from 'semantic-ui-react'
 import * as BooksAPI from '../utils/BooksAPI'
 import Shelf from './Shelf'
@@ -22,8 +23,7 @@ class SearchBooks extends Component {
 
   searchBooks = (e, data) => {
 
-    const query = data.value;
-    query.trim();
+    const query = escapeRegExp(data.value.trim());
 
     if(query.length > 1) {
 
@@ -43,8 +43,7 @@ class SearchBooks extends Component {
               return r;
             })
           }))
-        } else {
-          //console.log('resp',resp);
+        } else {          
           this.setState(state => ({
             searchResults: [],
             isLoading: false,
