@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
-import { Segment, Grid } from 'semantic-ui-react'
+import { Segment, Grid, Button, Header } from 'semantic-ui-react'
 import Shelf from './Shelf'
 
 class Bookcase extends Component {
@@ -22,18 +22,18 @@ class Bookcase extends Component {
           <Grid.Row key={s.key} style={{ marginTop: '10px', padding: '10px' }}>
             <Grid.Column>
               <Segment raised>
-                <h2>{s.text}</h2>
+                <Header as='h2' color='teal'>{s.text}</Header>
                 <Shelf books={books.filter(b => b.shelf === s.value)} shelves={shelves} updateShelf={updateShelf} />
               </Segment>
             </Grid.Column>
           </Grid.Row>
         ))}
 
-        <div className="open-search">
-          <Link to="/search">
+        <Grid centered style={{ marginTop: '10px', padding: '10px' }}>
+          <Button color='teal' as={Link} to='/search'>
             Add a book
-          </Link>
-        </div>
+          </Button>
+        </Grid>
 
       </div>
 

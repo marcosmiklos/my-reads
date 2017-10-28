@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
-import { Segment, Grid, Input } from 'semantic-ui-react'
+import { Segment, Grid, Input, Button, Header } from 'semantic-ui-react'
 import * as BooksAPI from '../utils/BooksAPI'
 import Shelf from './Shelf'
 
@@ -25,7 +25,7 @@ class SearchBooks extends Component {
 
     const query = escapeRegExp(data.value.trim());
 
-    if(query.length > 1) {
+    if(query.length) {
 
       this.setState(state => ({
         isLoading: true,
@@ -43,7 +43,7 @@ class SearchBooks extends Component {
               return r;
             })
           }))
-        } else {          
+        } else {
           this.setState(state => ({
             searchResults: [],
             isLoading: false,
@@ -75,7 +75,6 @@ class SearchBooks extends Component {
 
     return (
       <div className='container'>
-
           <Input
             icon='search'
             placeholder='Search...'
@@ -86,20 +85,20 @@ class SearchBooks extends Component {
 
           <Grid.Row style={{ marginTop: '10px', padding: '10px' }}>
             <Grid.Column>
-              <Segment raised>
-                <h2>Results</h2>
                 {searchResults.length > 0 &&
-                  <Shelf books={searchResults} shelves={shelves} updateShelf={updateShelf} />
+                  <Segment raised>
+                    <Header as='h2' color='teal'>Results</Header>
+                    <Shelf books={searchResults} shelves={shelves} updateShelf={updateShelf} />
+                  </Segment>
                 }
-              </Segment>
             </Grid.Column>
           </Grid.Row>
 
-        <div className="open-main">
-          <Link to="/">
-            Add a book
-          </Link>
-        </div>
+          <Grid centered style={{ marginTop: '10px', padding: '10px' }}>
+            <Button color='teal' as={Link} to='/'>
+              Back
+            </Button>
+          </Grid>
 
       </div>
     )

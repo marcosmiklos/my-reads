@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import * as BooksAPI from './utils/BooksAPI'
 import 'semantic-ui-css/semantic.min.css';
-import { Container, Header } from 'semantic-ui-react'
+import { Container, Header, Icon } from 'semantic-ui-react'
 import Bookcase from './pages/Bookcase';
 import SearchBooks from './pages/SearchBooks';
 
@@ -52,7 +52,12 @@ class App extends Component {
     return (
       <div className="App">
         <Container style={{ marginTop: '3em', padding: '5em 0em' }}>
-          <Header as='h1' dividing>My Reads</Header>
+          <Header as='h1' color='teal' dividing>
+            <Icon name='book' />
+            <Header.Content>
+              My Reads
+            </Header.Content>
+          </Header>
           <Route exact path='/' render={() => (
             <Bookcase
               books={books}

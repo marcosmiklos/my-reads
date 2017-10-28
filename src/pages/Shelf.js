@@ -17,6 +17,9 @@ const Shelf = ({ books=[], shelves=[], shelfTitle = '', updateShelf, checkImage,
             <Card.Header>
               {book.title}
             </Card.Header>
+            <Card.Meta>
+              {book.authors ? book.authors.join(', ') : ''}
+            </Card.Meta>
             <Card.Description></Card.Description>
           </Card.Content>
           <Card.Content extra>
