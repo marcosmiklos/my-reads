@@ -2,7 +2,7 @@ import React from 'react'
 import 'semantic-ui-css/semantic.min.css';
 import { Grid, Card, Image, Dropdown } from 'semantic-ui-react'
 
-const Shelf = ({ books=[], shelves=[], shelfTitle = '', onUpdateShelf, checkImage, columns = 5 }) => {
+const Shelf = ({ books=[], shelves=[], shelfTitle = '', onUpdateShelf, columns = 5 }) => {
 
   const options = shelves.concat([{key: 'none', text: 'None', value: 'none' }]);
 
@@ -29,7 +29,7 @@ const Shelf = ({ books=[], shelves=[], shelfTitle = '', onUpdateShelf, checkImag
                 text='Move to...'
                 options={options}
                 defaultValue={book.shelf}
-                onChange={(event, data) => updateShelf(event, data, book)}
+                onChange={(event, data) => onUpdateShelf(event, data, book)}
                 />
           </Card.Content>
         </Card>

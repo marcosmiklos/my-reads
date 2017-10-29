@@ -36,10 +36,8 @@ class Bookcase extends Component {
         </Grid>
 
       </div>
-
     )
   }
-
 }
 
 export default Bookcase

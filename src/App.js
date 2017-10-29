@@ -38,9 +38,11 @@ class App extends Component {
     }
   };
 
-  resolveImage = (book) => {
-    return book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : '/defaultcover.jpg';
-  }
+  resolveImage = (book) => (
+    (book.imageLinks && book.imageLinks.smallThumbnail)
+    ? book.imageLinks.smallThumbnail
+    : '/defaultcover.jpg'
+  )
 
   render() {
 
