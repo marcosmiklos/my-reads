@@ -28,10 +28,10 @@ class SearchBooks extends Component {
 
     if(query.length) {
 
-      this.setState(state => ({
+      this.setState({
         isLoading: true,
         query: query
-      }))
+      })
 
       BooksAPI.search(query, 20).then( resp => {
         if(resp && resp.length > 0) {
