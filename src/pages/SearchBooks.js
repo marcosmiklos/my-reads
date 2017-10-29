@@ -5,6 +5,7 @@ import escapeRegExp from 'escape-string-regexp'
 import { Segment, Grid, Input, Button, Header } from 'semantic-ui-react'
 import * as BooksAPI from '../utils/BooksAPI'
 import Shelf from './Shelf'
+import { Debounce } from 'react-throttle';
 
 class SearchBooks extends Component {
 
@@ -75,6 +76,8 @@ class SearchBooks extends Component {
 
     return (
       <div className='container'>
+        
+        <Debounce time="400" handler="onChange">
           <Input
             icon='search'
             placeholder='Search...'
@@ -82,23 +85,24 @@ class SearchBooks extends Component {
             loading={isLoading}
             onChange={(e, data) => this.searchBooks(e, data)}
           />
+        </Debounce>
 
-          <Grid.Row style={{ marginTop: '10px', padding: '10px' }}>
-            <Grid.Column>
-                {searchResults.length > 0 &&
-                  <Segment raised>
-                    <Header as='h2' color='teal'>Results</Header>
-                    <Shelf books={searchResults} shelves={shelves} onUpdateShelf={onUpdateShelf} />
-                  </Segment>
-                }
-            </Grid.Column>
-          </Grid.Row>
+        <Grid.Row style={{ marginTop: '10px', padding: '10px' }}>
+          <Grid.Column>
+              {searchResults.length > 0 &&
+                <Segment raised>
+                  <Header as='h2' color='teal'>Results</Header>
+                  <Shelf books={searchResults} shelves={shelves} onUpdateShelf={onUpdateShelf} />
+                </Segment>
+              }
+          </Grid.Column>
+        </Grid.Row>
 
-          <Grid centered style={{ marginTop: '10px', padding: '10px' }}>
-            <Button color='teal' as={Link} to='/'>
-              Back
-            </Button>
-          </Grid>
+        <Grid centered style={{ marginTop: '10px', padding: '10px' }}>
+          <Button color='teal' as={Link} to='/'>
+            Back
+          </Button>
+        </Grid>
 
       </div>
     )
