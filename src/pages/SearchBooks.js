@@ -40,7 +40,7 @@ class SearchBooks extends Component {
             searchResults: resp.map( r => {
               r.shelf = this.verifyShelf(r);
               //fix images covers
-              r.imageLinks = { smallThumbnail: this.props.resolveImage(r) };
+              r.imageLinks = { smallThumbnail: this.props.onResolveImage(r) };
               return r;
             })
           }))
@@ -76,7 +76,7 @@ class SearchBooks extends Component {
 
     return (
       <div className='container'>
-        
+
         <Debounce time="400" handler="onChange">
           <Input
             icon='search'
